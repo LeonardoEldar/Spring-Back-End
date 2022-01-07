@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{persona.modificar.titulo}"></title>
+</head>
+<body>
+<header th:replace="shared/layout :: header"></header>
+<h2 th:text="#{persona.info}"></h2>
+<a th:href="@{/springData}">[[#{accion.regresar}]]</a>
+<br/>
+<form th:action="@{/guardar}" method="post" th:object="${persona}">
+
+    <input type="hidden" name="idPersona" th:field="*{idPersona}">
+
+    <label for="nombre">[[#{persona.nombre}]]:</label>
+    <input type="text" name="nombre" th:field="*{nombre}"/>
+    <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error</span>
+    <br/>
+
+    <label for="apellido">[[#{persona.apellido}]]:</label>
+    <input type="text" name="apellido" th:field="*{apellido}"/>
+    <span th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}">Error</span>
+    <br/>
+
+    <label for="email">[[#{persona.email}]]:</label>
+    <input type="text" name="email" th:field="*{email}"/>
+    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error</span>
+    <br/>
+
+    <label for="telefono">[[#{persona.telefono}]]:</label>
+    <input type="tel" name="telefono" th:field="*{telefono}"/>
+    <span th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}">Error</span>
+
+    <br/>
+    <input type="submit" name="guardar" value="Guardar"/>
+</form>
+
+<footer th:replace="shared/layout :: footer"></footer>
+
+</body>
+</html>
